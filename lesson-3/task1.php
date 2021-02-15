@@ -20,13 +20,18 @@ function mb_strrev($str)
 }
 
 $phrases = ['Тут как тут', 'Коту тащат уток', '15.01.2002 10:51', 'Я разуму уму заря', 'Искать такси', 'Дивен мне вид'];
-$palindromes = [];
 
-foreach ($phrases as $phrase) {
-    $start_phrase = $phrase;
-    $phrase = mb_strtolower(str_replace([' ', '.', ':'], '', $phrase));
-    $phrase_reverse = mb_strrev($phrase);
-    if ($phrase === $phrase_reverse) $palindromes[] = $start_phrase;
+
+function checkPalindromes($phrases, $callback_strtolower, $callback_strrev)
+{
+    $palindromes = [];
+    foreach ($phrases as $phrase) {
+        $start_phrase = $phrase;
+        $phrase = $callback_strtolower(str_replace([' ', '.', ':'], '', $phrase));
+        $phrase_reverse = $callback_strrev($phrase);
+        if ($phrase === $phrase_reverse) $palindromes[] = $start_phrase;
+    }
+    return $palindromes;
 }
 
-var_dump($palindromes);
+//var_dump(checkPalindromes($phrases,'mb_strtolower','mb_strrev'));

@@ -42,4 +42,4 @@ function translit_array($arr)
 $phrases_translit = translit_array($phrases);
 
 
-var_dump(checkPalindromes($phrases_translit, 'strtolower', 'strrev'));
+//var_dump(checkPalindromes($phrases_translit, 'strtolower', 'strrev'));

@@ -18,11 +18,11 @@ function generateCalendarMonth($numberDays, $nameDay)
         }
         foreach ($nameDays as $day) {
             $calendarMonth[$i] = $day;
-            $i++;
+            if($day !== 'воскресенье') $i++;
             if ($i > $numberDays) break;
         }
     }
     return $calendarMonth;
 }
 
-var_dump(generateCalendarMonth(30, 'Суббота'));
+//var_dump(generateCalendarMonth(30, 'Суббота'));

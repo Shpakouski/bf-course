@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dependent Fields</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="form_container">
+    <form id="form">
+        <select name="city" id="selectCity">
+            <option value="0">Выберите город</option>
+            <option value="487">Минск</option>
+            <option value="489">Брест</option>
+        </select>
+        <div id="inner"></div>
+        <input type="submit" name="send" value="Отправить данные">
+    </form>
+    <span id="result"></span>
+</div>
+<script>
+    $('#selectCity').change(function () {
+        $.ajax({
+            url: 'req.php?type=add',
+            method: 'post',
+            dataType: 'html',
+            data: $(this).serialize(),
+            success: function (data) {
+                $('#inner').html(data);
+            }
+        });
+        return false;
+    });
+    $('#form').on('submit', function () {
+        $.ajax({
+            url: 'req.php',
+            method: 'post',
+            dataType: 'html',
+            data: $(this).serialize(),
+            success: function (data) {
+                $('#result').html(data);
+            }
+        });
+        return false;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="form_container">
+    <form id="form">
+        <input type="number" name="num1">
+        <input type="number" name="num2">
+        <input type="submit" name="send" value="=">
+        <span id="result"></span>
+    </form>
+</div>
+<script>
+    $('#form').on('submit', function () {
+        $.ajax({
+            url: 'req.php',
+            method: 'post',
+            dataType: 'html',
+            data: $(this).serialize(),
+            success: function (data) {
+                $('#result').html(data);
+            }
+        });
+        return false;
+    });
+</script>
+</body>
+</html>
